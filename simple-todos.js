@@ -9,6 +9,9 @@ if (Meteor.isClient) {
             }
 
             return Tasks.find({}, {sort:{createdAt: -1}});
+        },
+        incompleteCount: function() {
+            return Tasks.find({checked: {$ne: true}} ).count();
         }
     });
 
@@ -29,7 +32,6 @@ if (Meteor.isClient) {
         },
         'change .hide-completed input': function( event ) {
             Session.set('hideCompleted', event.target.checked);
-            console.log("cc");
         }
 
 
