@@ -1,4 +1,5 @@
 <!-- simple-todos.html -->
+
 <head>
     <title>Todo List</title>
 </head>
@@ -10,13 +11,21 @@
         </header>
 
         <ul>
-            {{#each tasks}}
-            {{> task}}
-            {{/each}}
+            {{#each tasks}} {{> task}} {{/each}}
         </ul>
+
+        <form class="new-task">
+            <input type="text" name="text" placeholder="Type to add new tasks" />
+        </form>
     </div>
 </body>
 
 <template name="task">
-    <li>{{text}}</li>
+    <li class="{{#if checked}}checked{{/if}}">
+        <button class="delete">&times;</button>
+
+        <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+
+        <span class="text">{{text}}</span>
+    </li>
 </template>
